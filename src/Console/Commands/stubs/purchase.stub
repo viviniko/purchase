@@ -46,6 +46,7 @@ class CreatePurchaseTable extends Migration
             $table->unsignedInteger('item_id');
             $table->unsignedInteger('quantity')->default(0);
             $table->unsignedTinyInteger('status')->default(0);
+            $table->string('specs');
             $table->text('trace')->nullable();
             $table->timestamps();
         });
