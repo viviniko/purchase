@@ -37,7 +37,7 @@ class PurchaseServiceProvider extends BaseServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/purchase.php', 'sale');
+        $this->mergeConfigFrom(__DIR__ . '/../config/purchase.php', 'purchase');
 
         $this->registerRepositories();
 

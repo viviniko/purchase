@@ -47,7 +47,7 @@ class CreatePurchaseTable extends Migration
             $table->unsignedInteger('quantity')->default(0);
             $table->unsignedTinyInteger('status')->default(0);
             $table->text('trace')->nullable();
-            $this->timestamps();
+            $table->timestamps();
         });
 
         // Create table for storing invoices
@@ -62,7 +62,7 @@ class CreatePurchaseTable extends Migration
             $table->unsignedTinyInteger('status')->default(0);
             $table->string('manufacturer', 120);
             $table->string('created_by', 32);
-            $this->timestamps();
+            $table->timestamps();
         });
 
         // Create table for storing invoices
