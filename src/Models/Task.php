@@ -13,6 +13,16 @@ class Task extends Model
         'order_id', 'item_id', 'quantity', 'status', 'trace'
     ];
 
+    public function order()
+    {
+        return $this->belongsTo(Config::get('sale.order'), 'order_id');
+    }
+
+    public function item()
+    {
+        return $this->belongsTo(Config::get('catalog.item'), 'item_id');
+    }
+
     public function invoices()
     {
         return $this->hasMany(Config::get('purchase.invoice'), 'task_id');

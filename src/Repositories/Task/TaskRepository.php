@@ -16,7 +16,7 @@ interface TaskRepository
     public function search(SearchRequest $searchRequest);
 
     /**
-     * Get order.
+     * Get task.
      *
      * @param $column
      * @param null $value
@@ -24,6 +24,14 @@ interface TaskRepository
      * @return mixed
      */
     public function findBy($column, $value = null, $columns = ['*']);
+
+    /**
+     * Create new task.
+     *
+     * @param array $data
+     * @return mixed
+     */
+    public function create(array $data);
 
     /**
      * Find data by id
@@ -48,9 +56,8 @@ interface TaskRepository
      * Delete a entity in repository by id
      *
      * @param        $id
-     * @param  bool  $force
      *
      * @return mixed
      */
-    public function delete($id, $force = false);
+    public function delete($id);
 }

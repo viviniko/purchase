@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 use Viviniko\Purchase\Enums\TaskStatus;
 use Viviniko\Purchase\Repositories\Task\TaskRepository;
+use Viviniko\Purchase\Services\TaskService;
 use Viviniko\Repository\SearchPageRequest;
 
 class TaskServiceImpl implements TaskService
@@ -50,5 +51,20 @@ class TaskServiceImpl implements TaskService
     public function getTask($id)
     {
         return $this->tasks->find($id);
+    }
+
+    public function createTask(array $data)
+    {
+        return $this->tasks->create($data);
+    }
+
+    public function updateTask($id, array $data)
+    {
+        return $this->tasks->update($id, $data);
+    }
+
+    public function deleteTask($id)
+    {
+        return $this->tasks->delete($id);
     }
 }

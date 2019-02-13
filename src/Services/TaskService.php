@@ -21,4 +21,10 @@ interface TaskService
      * @return mixed
      */
     public function getTask($id);
+
+    public function createTask(array $data);
+
+    public function updateTask($id, array $data);
+
+    public function deleteTask($id);
 }

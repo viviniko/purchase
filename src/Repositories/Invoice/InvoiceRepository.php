@@ -56,9 +56,8 @@ interface InvoiceRepository
      * Delete a entity in repository by id
      *
      * @param        $id
-     * @param  bool  $force
      *
      * @return mixed
      */
-    public function delete($id, $force = false);
+    public function delete($id);
 }
