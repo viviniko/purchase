@@ -1,0 +1,90 @@
+<?php
+
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreatePurchaseTable extends Migration
+{
+    /**
+     * @var string
+     */
+    protected $tasksTable;
+
+    /**
+     * @var string
+     */
+    protected $invoicesTable;
+
+    /**
+     * @var string
+     */
+    protected $invoiceItemsTable;
+
+    /**
+     * CreateSaleTable constructor.
+     */
+    public function __construct()
+    {
+        $this->tasksTable = Config::get('purchase.tasks_table');
+        $this->invoicesTable = Config::get('purchase.invoices_table');
+        $this->invoiceItemsTable = Config::get('purchase.invoice_items_table');
+    }
+
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        // Create table for storing tasks
+        Schema::create($this->tasksTable, function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('order_id');
+            $table->unsignedInteger('item_id');
+            $table->unsignedInteger('quantity')->default(0);
+            $table->unsignedTinyInteger('status')->default(0);
+            $table->text('trace')->nullable();
+            $this->timestamps();
+        });
+
+        // Create table for storing invoices
+        Schema::create($this->invoicesTable, function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('task_id');
+            $table->string('invoice_number', 100);
+            $table->decimal('discount', 16, 4)->default(0);
+            $table->decimal('subtotal', 16, 4)->default(0);
+            $table->decimal('shipping', 16, 4)->default(0);
+            $table->decimal('total', 16, 4)->default(0);
+            $table->unsignedTinyInteger('status')->default(0);
+            $table->string('manufacturer', 120);
+            $table->string('created_by', 32);
+            $this->timestamps();
+        });
+
+        // Create table for storing invoices
+        Schema::create($this->invoiceItemsTable, function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('invoice_id');
+            $table->unsignedInteger('item_id');
+            $table->decimal('amount', 16, 4)->default(0);
+            $table->unsignedTinyInteger('quantity')->default(0);
+            $table->unsignedTinyInteger('status')->default(0);
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists($this->tasksTable);
+        Schema::dropIfExists($this->invoicesTable);
+        Schema::dropIfExists($this->invoiceItemsTable);
+    }
+}

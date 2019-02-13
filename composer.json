@@ -1,0 +1,32 @@
+{
+    "name": "viviniko/purchase",
+    "description": "VIVINIKO Purchase Service Provider",
+	"keywords": ["viviniko", "Purchase", "laravel"],
+	"homepage": "http://viviniko.com",
+	"license": "MIT",
+	"authors": [
+        {
+            "name": "viviniko",
+            "email": "viviniko.shop@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "viviniko/catalog": "dev-master",
+        "viviniko/sale": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "Viviniko\\Purchase": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Viviniko\\Purchase\\PurchaseServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
