@@ -60,6 +60,12 @@ class TaskServiceImpl implements TaskService
 
     public function updateTask($id, array $data)
     {
+        if (!empty($data['trace'])) {
+            $task = $this->getTask($id);
+            $trace = sprintf('[%s]%s: %s', date('Y-m-d H:i:s'), Auth::user()->first_name . ' ' . Auth::user()->last_name, $data['trace']);
+            $data['traces'] = $task->traces;
+            $data['traces'][] = $trace;
+        }
         return $this->tasks->update($id, $data);
     }
 
