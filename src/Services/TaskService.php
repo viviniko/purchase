@@ -22,6 +22,8 @@ interface TaskService
      */
     public function getTask($id);
 
+    public function getTasksIn(array $id);
+
     public function createTask(array $data);
 
     public function updateTask($id, array $data);

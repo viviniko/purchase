@@ -43,7 +43,7 @@ class CreatePurchaseTable extends Migration
         Schema::create($this->tasksTable, function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('order_id');
-            $table->unsignedInteger('invoice_id');
+            $table->unsignedInteger('invoice_id')->nullable();
             $table->unsignedInteger('item_id');
             $table->string('item_specs')->nullable();
             $table->unsignedInteger('quantity')->default(0);

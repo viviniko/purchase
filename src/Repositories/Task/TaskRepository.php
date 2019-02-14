@@ -16,6 +16,16 @@ interface TaskRepository
     public function search(SearchRequest $searchRequest);
 
     /**
+     * Get all task.
+     *
+     * @param $column
+     * @param null $value
+     * @param array $columns
+     * @return mixed
+     */
+    public function findAllBy($column, $value = null, $columns = ['*']);
+
+    /**
      * Get task.
      *
      * @param $column

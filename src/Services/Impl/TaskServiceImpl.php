@@ -73,4 +73,9 @@ class TaskServiceImpl implements TaskService
     {
         return $this->tasks->delete($id);
     }
+
+    public function getTasksIn(array $id)
+    {
+        return $this->tasks->findAllBy('id', $id);
+    }
 }
