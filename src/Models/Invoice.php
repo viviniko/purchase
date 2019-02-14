@@ -10,13 +10,8 @@ class Invoice extends Model
     protected $tableConfigKey = 'purchase.invoices_table';
 
     protected $fillable = [
-        'task_id', 'invoice_number', 'discount', 'subtotal', 'shipping', 'total', 'status'
+        'invoice_number', 'discount', 'subtotal', 'shipping', 'total', 'status', 'manufacturer', 'created_by'
     ];
-
-    public function task()
-    {
-        return $this->belongsTo(Config::get('purchase.task'), 'task_id');
-    }
 
     public function items()
     {

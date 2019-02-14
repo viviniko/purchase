@@ -10,7 +10,7 @@ class Task extends Model
     protected $tableConfigKey = 'purchase.tasks_table';
 
     protected $fillable = [
-        'order_id', 'item_id', 'quantity', 'status', 'item_specs', 'traces',
+        'order_id', 'item_id', 'invoice_id', 'quantity', 'status', 'item_specs', 'traces',
     ];
 
     protected $casts = [

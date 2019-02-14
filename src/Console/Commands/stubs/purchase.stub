@@ -43,10 +43,11 @@ class CreatePurchaseTable extends Migration
         Schema::create($this->tasksTable, function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('order_id');
+            $table->unsignedInteger('invoice_id');
             $table->unsignedInteger('item_id');
+            $table->string('item_specs')->nullable();
             $table->unsignedInteger('quantity')->default(0);
             $table->unsignedTinyInteger('status')->default(0);
-            $table->string('item_specs')->nullable();
             $table->text('traces')->nullable();
             $table->timestamps();
         });
@@ -54,7 +55,6 @@ class CreatePurchaseTable extends Migration
         // Create table for storing invoices
         Schema::create($this->invoicesTable, function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('task_id');
             $table->string('invoice_number', 100);
             $table->decimal('discount', 16, 4)->default(0);
             $table->decimal('subtotal', 16, 4)->default(0);
@@ -71,6 +71,7 @@ class CreatePurchaseTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('invoice_id');
             $table->unsignedInteger('item_id');
+            $table->string('item_specs')->nullable();
             $table->decimal('amount', 16, 4)->default(0);
             $table->unsignedTinyInteger('quantity')->default(0);
             $table->unsignedTinyInteger('status')->default(0);
