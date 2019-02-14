@@ -12,4 +12,9 @@ class InvoiceItem extends Model
     protected $fillable = [
         'invoice_id', 'task_id', 'amount', 'quantity', 'note', 'status'
     ];
+
+    public function task()
+    {
+        return $this->belongsTo(Config::get('purchase.task'), 'task_id');
+    }
 }
