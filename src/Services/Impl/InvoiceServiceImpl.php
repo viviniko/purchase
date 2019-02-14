@@ -61,11 +61,27 @@ class InvoiceServiceImpl implements InvoiceService
 
     public function createInvoice(array $data)
     {
-        return $this->invoices->create($data);
+        return DB::transaction(function () use ($data) {
+            $invoice = $this->invoices->create($data);;
+            foreach($data['items'] as $item) {
+                $item['invoice_id'] = $invoice->id;
+                $item['status'] = 0;
+                $this->invoiceItems->create($item);
+            }
+
+            return $invoice;
+        });
     }
 
     public function updateInvoice($id, array $data)
     {
-        return $this->invoices->update($id, $data);
+        return DB::transaction(function () use ($id, $data) {
+            $invoice = $this->invoices->update($id, $data);
+            foreach($data['items'] as $item) {
+                $this->invoiceItems->update($item['id'], $item);
+            }
+
+            return $invoice;
+        });
     }
 }
