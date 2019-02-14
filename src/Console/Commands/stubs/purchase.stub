@@ -70,10 +70,10 @@ class CreatePurchaseTable extends Migration
         Schema::create($this->invoiceItemsTable, function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('invoice_id');
-            $table->unsignedInteger('item_id');
-            $table->string('item_specs')->nullable();
+            $table->unsignedInteger('task_id');
             $table->decimal('amount', 16, 4)->default(0);
             $table->unsignedTinyInteger('quantity')->default(0);
+            $table->text('note')->nullable();
             $table->unsignedTinyInteger('status')->default(0);
         });
     }
